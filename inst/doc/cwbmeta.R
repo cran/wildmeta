@@ -33,7 +33,8 @@ library(metafor)
 rma_model <- rma.mv(yi = d ~ 0 + study_type + hrs + test,
                     V = V,
                     random = ~ study_type | study,
-                    data = SATcoaching)
+                    data = SATcoaching,
+                    subset = !is.na(hrs) & !is.na(test))
 
 Wald_test_cwb(full_model = rma_model,
               constraints = constrain_equal(1:3),
@@ -44,19 +45,57 @@ Wald_test_cwb(full_model = rma_model,
 system.time(
   res <- Wald_test_cwb(full_model = robu_model,
                        constraints = constrain_equal(1:3),
-                       R = 999, 
+                       R = 1999, 
                        seed = 20201229)
 )
+
+## ---- eval = requireNamespace("future", quietly = TRUE) & requireNamespace("parallelly", quietly = TRUE) & requireNamespace("future.apply", quietly = TRUE)----
+library(future)
+
+if (parallelly::supportsMulticore()) {
+  plan(multicore) 
+} else {
+  plan(multisession)
+}
+parallelly::availableWorkers() |> length()
+
+system.time(
+  res <- Wald_test_cwb(full_model = robu_model,
+                       constraints = constrain_equal(1:3),
+                       R = 1999, 
+                       seed = 20201229)
+)
+
+plan(sequential)
 
 ## ---- warning = FALSE---------------------------------------------------------
 system.time(
   Wald_test_cwb(full_model = rma_model,
                 constraints = constrain_equal(1:3),
-                R = 999,
+                R = 99,
                 seed = 20210314)
 )
 
 
-## ---- fig.width = 6, fig.height = 2.5-----------------------------------------
+## ---- eval = requireNamespace("future", quietly = TRUE) & requireNamespace("parallelly", quietly = TRUE) & requireNamespace("future.apply", quietly = TRUE)----
+library(future)
+
+if (parallelly::supportsMulticore()) {
+  plan(multicore) 
+} else {
+  plan(multisession)
+}
+parallelly::availableWorkers() |> length()
+
+system.time(
+  Wald_test_cwb(full_model = rma_model,
+                constraints = constrain_equal(1:3),
+                R = 99,
+                seed = 20210314)
+)
+
+plan(sequential)
+
+## ---- eval = requireNamespace("ggplot2", quietly = TRUE), fig.width = 6, fig.height = 2.5----
 plot(res, fill = "darkred", alpha = 0.5)
 

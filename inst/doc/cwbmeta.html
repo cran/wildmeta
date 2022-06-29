@@ -14,7 +14,19 @@
 
 <title>Cluster Wild Bootstrapping for Meta-Analysis</title>
 
-<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -147,7 +159,187 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
 
 
 
@@ -159,24 +351,33 @@ div.csl-indent {
 
 
 
-<h1 class="title toc-ignore">Cluster Wild Bootstrapping for Meta-Analysis</h1>
+<h1 class="title toc-ignore">Cluster Wild Bootstrapping for
+Meta-Analysis</h1>
 
 
 <div id="TOC">
 <ul>
 <li><a href="#dependence-in-meta-analysis"><span class="toc-section-number">1</span> Dependence in Meta-Analysis</a></li>
-<li><a href="#bootstrapping"><span class="toc-section-number">2</span> Bootstrapping</a>
+<li><a href="#bootstrapping"><span class="toc-section-number">2</span>
+Bootstrapping</a>
 <ul>
-<li><a href="#cluster-wild-bootstrapping"><span class="toc-section-number">2.1</span> Cluster Wild Bootstrapping</a></li>
+<li><a href="#cluster-wild-bootstrapping"><span class="toc-section-number">2.1</span> Cluster Wild
+Bootstrapping</a></li>
 </ul></li>
-<li><a href="#example-from-wildmeta"><span class="toc-section-number">3</span> Example from <code>wildmeta</code></a>
+<li><a href="#example-from-wildmeta"><span class="toc-section-number">3</span> Example from
+<code>wildmeta</code></a>
 <ul>
-<li><a href="#robumeta-models"><span class="toc-section-number">3.1</span> <code>robumeta</code> models</a></li>
-<li><a href="#metafor-models"><span class="toc-section-number">3.2</span> <code>metafor</code> models</a></li>
-<li><a href="#timing"><span class="toc-section-number">3.3</span> Timing</a>
+<li><a href="#robumeta-models"><span class="toc-section-number">3.1</span> <code>robumeta</code>
+models</a></li>
+<li><a href="#metafor-models"><span class="toc-section-number">3.2</span> <code>metafor</code>
+models</a></li>
+<li><a href="#timing"><span class="toc-section-number">3.3</span>
+Timing</a>
 <ul>
-<li><a href="#robumeta-models-1"><span class="toc-section-number">3.3.1</span> <code>robumeta</code> models</a></li>
-<li><a href="#metafor-models-1"><span class="toc-section-number">3.3.2</span> <code>metafor</code> models</a></li>
+<li><a href="#robumeta-models-1"><span class="toc-section-number">3.3.1</span> <code>robumeta</code>
+models</a></li>
+<li><a href="#metafor-models-1"><span class="toc-section-number">3.3.2</span> <code>metafor</code>
+models</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#bootstrap-distribution-plot"><span class="toc-section-number">4</span> Bootstrap Distribution Plot</a></li>
@@ -185,44 +386,185 @@ div.csl-indent {
 </div>
 
 <div id="dependence-in-meta-analysis" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Dependence in Meta-Analysis</h1>
-<p>Typical methods to conduct meta-analysis or meta-regression work under the assumption that the effect size estimates are independent. However, primary studies often report multiple, statistically dependent estimates of effect sizes. Dependent effect sizes can occur through correlated effects structure, a hierarchical effects structure, or a combination of the two <span class="citation">(Hedges, Tipton, &amp; Johnson, 2010; Pustejovsky &amp; Tipton, 2021)</span>. A correlated effects data structure typically occurs due to multiple correlated measures of an outcome, repeated measures of the outcome data, or comparison of multiple treatment groups to the same control group <span class="citation">(Hedges, Tipton, &amp; Johnson, 2010)</span>. A hierarchical effects structure typically occurs when the meta-analysis includes multiple primary studies conducted by the same researcher, by the same lab, or in the same region <span class="citation">(Hedges, Tipton, &amp; Johnson, 2010)</span>.</p>
-<p>Researchers may be inclined to ignore dependence and use methods that assume that each effect size estimate is independent. However, doing so can result in inaccurate standard errors and, consequently, hypothesis tests with incorrect Type I error rates and confidence intervals with incorrect coverage levels <span class="citation">(Becker, 2000)</span>. Ad-hoc methods for handling dependence include averaging effect sizes by study or selecting a single effect size per study. These methods result in loss of information and are not suitable for studying within-study variation in effect sizes <span class="citation">(Hedges, Tipton, &amp; Johnson, 2010)</span>. A method called shifting the unit-of-analysis involves running meta-analytic models for different subsets of the data <span class="citation">(Cooper, 1998)</span>. However, this strategy is not useful if a researcher wants to summarize effects across the subsets or study differential effects <span class="citation">(Becker, 2000)</span>.</p>
-<p>The ideal solution for handling dependence would be to use a multivariate model <span class="citation">(Becker, 2000; Hedges, Tipton, &amp; Johnson, 2010)</span>. This approach explicitly models dependence among the effect sizes <span class="citation">(Becker, 2000; Hedges, Tipton, &amp; Johnson, 2010)</span>. However, multivariate meta-analysis requires knowledge of correlations or covariances between pairs of effect size estimates within each study, which are often difficult to obtain from primary studies.</p>
-<p>To handle dependence without knowing the covariance structure between effect size estimates, <span class="citation">Hedges, Tipton, &amp; Johnson (2010)</span> proposed the use of robust variance estimation (RVE). RVE involves estimating the variances for the meta-regression model’s coefficients using sandwich estimators that are valid even when the covariance structure is unknown or mis-specified <span class="citation">(Hedges, Tipton, &amp; Johnson, 2010)</span>. However, the performance characteristics of RVE are asymptotic in that a large number of clusters or studies is required to provide accurate standard error estimates <span class="citation">(Hedges, Tipton, &amp; Johnson, 2010)</span>. If the number of studies in a meta-analysis is small, RVE, as originally proposed by <span class="citation">Hedges, Tipton, &amp; Johnson (2010)</span>, can result in downwardly biased standard errors and inflation of Type I error rates <span class="citation">(Hedges, Tipton, &amp; Johnson, 2010; Tipton, 2015)</span>.</p>
-<p><span class="citation">Tipton (2015)</span> and <span class="citation">Tipton &amp; Pustejovsky (2015)</span> examined several small sample correction methods to improve the performance of RVE. <span class="citation">Tipton (2015)</span> recommended CR2 type correction for RVE as well as the use of Satterthwaite degrees of freedom for single coefficient tests. <span class="citation">Tipton &amp; Pustejovsky (2015)</span> examined corrections for multiple-contrast hypothesis tests. <span class="citation">Tipton &amp; Pustejovsky (2015)</span> found that the HTZ test, which is an extension of the CR2 correction method with the Satterthwaite degrees of freedom, controlled Type 1 error rate adequately even when the number of studies was small. However, <span class="citation">Joshi, Pustejovsky, &amp; Beretvas (2021)</span> showed, through simulations, that the HTZ test can be conservative. The authors examined another method, cluster wild bootstrapping (CWB), that has been studied in the econometrics literature but not in the meta-analytic context. The results of the simulations from <span class="citation">Joshi, Pustejovsky, &amp; Beretvas (2021)</span> showed that CWB adequately controlled for Type 1 error rate and provided higher power than the HTZ test, especially for multiple-contrast hypothesis tests.</p>
+<h1><span class="header-section-number">1</span> Dependence in
+Meta-Analysis</h1>
+<p>Typical methods to conduct meta-analysis or meta-regression work
+under the assumption that the effect size estimates are independent.
+However, primary studies often report multiple, statistically dependent
+estimates of effect sizes. Dependent effect sizes can occur through
+correlated effects structure, a hierarchical effects structure, or a
+combination of the two <span class="citation">(Hedges, Tipton, &amp;
+Johnson, 2010; Pustejovsky &amp; Tipton, 2021)</span>. A correlated
+effects data structure typically occurs due to multiple correlated
+measures of an outcome, repeated measures of the outcome data, or
+comparison of multiple treatment groups to the same control group <span class="citation">(Hedges et al., 2010)</span>. A hierarchical effects
+structure typically occurs when the meta-analysis includes multiple
+primary studies conducted by the same researcher, by the same lab, or in
+the same region <span class="citation">(Hedges et al., 2010)</span>.</p>
+<p>Researchers may be inclined to ignore dependence and use methods that
+assume that each effect size estimate is independent. However, doing so
+can result in inaccurate standard errors and, consequently, hypothesis
+tests with incorrect Type I error rates and confidence intervals with
+incorrect coverage levels <span class="citation">(Becker, 2000)</span>.
+Ad-hoc methods for handling dependence include averaging effect sizes by
+study or selecting a single effect size per study. These methods result
+in loss of information and are not suitable for studying within-study
+variation in effect sizes <span class="citation">(Hedges et al.,
+2010)</span>. A method called shifting the unit-of-analysis involves
+running meta-analytic models for different subsets of the data <span class="citation">(Cooper, 1998)</span>. However, this strategy is not
+useful if a researcher wants to summarize effects across the subsets or
+study differential effects <span class="citation">(Becker,
+2000)</span>.</p>
+<p>The ideal solution for handling dependence would be to use a
+multivariate model <span class="citation">(Becker, 2000; Hedges et al.,
+2010)</span>. This approach explicitly models dependence among the
+effect sizes <span class="citation">(Becker, 2000; Hedges et al.,
+2010)</span>. However, multivariate meta-analysis requires knowledge of
+correlations or covariances between pairs of effect size estimates
+within each study, which are often difficult to obtain from primary
+studies.</p>
+<p>To handle dependence without knowing the covariance structure between
+effect size estimates, <span class="citation">Hedges et al.
+(2010)</span> proposed the use of robust variance estimation (RVE). RVE
+involves estimating the variances for the meta-regression model’s
+coefficients using sandwich estimators that are valid even when the
+covariance structure is unknown or mis-specified <span class="citation">(Hedges et al., 2010)</span>. However, the performance
+characteristics of RVE are asymptotic in that a large number of clusters
+or studies is required to provide accurate standard error estimates
+<span class="citation">(Hedges et al., 2010)</span>. If the number of
+studies in a meta-analysis is small, RVE, as originally proposed by
+<span class="citation">Hedges et al. (2010)</span>, can result in
+downwardly biased standard errors and inflation of Type I error rates
+<span class="citation">(Hedges et al., 2010; Tipton, 2015)</span>.</p>
+<p><span class="citation">Tipton (2015)</span> and <span class="citation">Tipton &amp; Pustejovsky (2015)</span> examined several
+small sample correction methods to improve the performance of RVE. <span class="citation">Tipton (2015)</span> recommended CR2 type correction
+for RVE as well as the use of Satterthwaite degrees of freedom for
+single coefficient tests. <span class="citation">Tipton &amp;
+Pustejovsky (2015)</span> examined corrections for multiple-contrast
+hypothesis tests. <span class="citation">Tipton &amp; Pustejovsky
+(2015)</span> found that the HTZ test, which is an extension of the CR2
+correction method with the Satterthwaite degrees of freedom, controlled
+Type 1 error rate adequately even when the number of studies was small.
+However, <span class="citation">Joshi, Pustejovsky, &amp; Beretvas
+(2022)</span> showed, through simulations, that the HTZ test can be
+conservative. The authors examined another method, cluster wild
+bootstrapping (CWB), that has been studied in the econometrics
+literature but not in the meta-analytic context. The results of the
+simulations from <span class="citation">Joshi et al. (2022)</span>
+showed that CWB adequately controlled for Type 1 error rate and provided
+higher power than the HTZ test, especially for multiple-contrast
+hypothesis tests.</p>
 </div>
 <div id="bootstrapping" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Bootstrapping</h1>
-<p>General bootstrapping can be used to estimate measures of uncertainty, like standard errors, p-values and confidence intervals, even when other methods fail <span class="citation">(Boos &amp; others, 2003)</span>. Bootstrapping involves re-sampling from the original data many times to create an empirical distribution which is used in place of the distribution of an estimate or test statistic <span class="citation">(Boos &amp; others, 2003)</span>.</p>
-<p>Several bootstrapping data generating processes are available. The most common one is pair bootstrapping, which involves re-sampling with replacement the set of outcome and covariate data for each case <span class="citation">(Freedman, 1981, 1984)</span>. For data involving clusters, the entire cluster is re-sampled <span class="citation">(Cameron, Gelbach, &amp; Miller, 2008)</span>. In meta-analytic studies with small number of clusters, pairs bootstrapping can result in lack of variance in the distribution of covariates rendering estimation of coefficients infeasible <span class="citation">(Cameron, Gelbach, &amp; Miller, 2008)</span>.</p>
-<p>Another type of bootstrapping involves re-sampling residuals <span class="citation">(Cameron, Gelbach, &amp; Miller, 2008)</span>. In case with clusters, entire vector of residuals for each cluster is re-sampled <span class="citation">(Cameron, Gelbach, &amp; Miller, 2008; MacKinnon, 2009)</span>. Such a procedure requires clusters to be of equal size and has an underlying assumption that the errors are independently and identically distributed <span class="citation">(MacKinnon, 2009)</span>.</p>
-<p>An ideal way to bootstrap when the number of clusters is small is to use cluster wild bootstrapping, which involves sampling weights and multiplying residuals with the random weights <span class="citation">(Cameron, Gelbach, &amp; Miller, 2008; MacKinnon, 2009)</span>. In contrast to the process of pair bootstrapping, the process of CWB does not involve re-sampling the distribution of predictor variables. Thus, the problem of lack of variance in covariates due to re-sampling does not occur with CWB <span class="citation">(Cameron, Gelbach, &amp; Miller, 2008; MacKinnon, 2009)</span>. Further, in contrast to residual bootstrapping, CWB does not require clusters to have the same size and does not require the errors to be independently and identically distributed <span class="citation">(Cameron, Gelbach, &amp; Miller, 2008; MacKinnon, 2009)</span>.</p>
+<h1><span class="header-section-number">2</span> Bootstrapping</h1>
+<p>General bootstrapping can be used to estimate measures of
+uncertainty, like standard errors, p-values and confidence intervals,
+even when other methods fail <span class="citation">(Boos et al.,
+2003)</span>. Bootstrapping involves re-sampling from the original data
+many times to create an empirical distribution which is used in place of
+the distribution of an estimate or test statistic <span class="citation">(Boos et al., 2003)</span>.</p>
+<p>Several bootstrapping data generating processes are available. The
+most common one is pair bootstrapping, which involves re-sampling with
+replacement the set of outcome and covariate data for each case <span class="citation">(Freedman, 1981, 1984)</span>. For data involving
+clusters, the entire cluster is re-sampled <span class="citation">(Cameron, Gelbach, &amp; Miller, 2008)</span>. In
+meta-analytic studies with small number of clusters, pairs bootstrapping
+can result in lack of variance in the distribution of covariates
+rendering estimation of coefficients infeasible <span class="citation">(Cameron et al., 2008)</span>.</p>
+<p>Another type of bootstrapping involves re-sampling residuals <span class="citation">(Cameron et al., 2008)</span>. In case with clusters,
+entire vector of residuals for each cluster is re-sampled <span class="citation">(Cameron et al., 2008; MacKinnon, 2009)</span>. Such a
+procedure requires clusters to be of equal size and has an underlying
+assumption that the errors are independently and identically distributed
+<span class="citation">(MacKinnon, 2009)</span>.</p>
+<p>An ideal way to bootstrap when the number of clusters is small is to
+use cluster wild bootstrapping, which involves sampling weights and
+multiplying residuals with the random weights <span class="citation">(Cameron et al., 2008; MacKinnon, 2009)</span>. In
+contrast to the process of pair bootstrapping, the process of CWB does
+not involve re-sampling the distribution of predictor variables. Thus,
+the problem of lack of variance in covariates due to re-sampling does
+not occur with CWB <span class="citation">(Cameron et al., 2008;
+MacKinnon, 2009)</span>. Further, in contrast to residual bootstrapping,
+CWB does not require clusters to have the same size and does not require
+the errors to be independently and identically distributed <span class="citation">(Cameron et al., 2008; MacKinnon, 2009)</span>.</p>
 <div id="cluster-wild-bootstrapping" class="section level2" number="2.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> Cluster Wild Bootstrapping</h2>
-<p>This section provides an overview of the cluster wild bootstrapping algorithm.</p>
-<p><span class="citation">MacKinnon (2009)</span> recommended imposing the null hypothesis when running bootstrap hypothesis tests as the process of hypothesis testing involves examining where the test statistic lies on the the sampling distribution based on the null hypothesis. For weights to use in cluster wild bootstrapping, <span class="citation">MacKinnon (2015)</span> and <span class="citation">Webb (2013)</span> have shown that the Rademacher weights, which take on the values of -1 and 1 with the probability of 0.5 each, outperform all other types of weights for studies with number of clusters as low as 10.</p>
-<p>The general process of conducting cluster wild bootstrapping is as follows <span class="citation">(Cameron, Gelbach, &amp; Miller, 2008; MacKinnon, 2009)</span>:</p>
+<h2><span class="header-section-number">2.1</span> Cluster Wild
+Bootstrapping</h2>
+<p>This section provides an overview of the cluster wild bootstrapping
+algorithm.</p>
+<p><span class="citation">MacKinnon (2009)</span> recommended imposing
+the null hypothesis when running bootstrap hypothesis tests as the
+process of hypothesis testing involves examining where the test
+statistic lies on the the sampling distribution based on the null
+hypothesis. For weights to use in cluster wild bootstrapping, <span class="citation">MacKinnon (2015)</span> and <span class="citation">Webb
+(2013)</span> have shown that the Rademacher weights, which take on the
+values of -1 and 1 with the probability of 0.5 each, outperform all
+other types of weights for studies with number of clusters as low as
+10.</p>
+<p>The general process of conducting cluster wild bootstrapping is as
+follows <span class="citation">(Cameron et al., 2008; MacKinnon,
+2009)</span>:</p>
 <ol style="list-style-type: decimal">
 <li><p>Fit a null model and a full model on the original data.</p></li>
 <li><p>Obtain residuals from the null model.</p></li>
-<li><p>Generate an auxiliary random variable that has mean of 0 and variance of 1 and multiply the residuals by the random variable (e.g., Rademacher weights) set to be constant within clusters (CWB). The residuals can also be multiplied by CR2 adjustment matrices before multiplying by weights (CWB Adjusted). Adjusting the residuals by CR2 matrices can correct the under-estimation of the error variance when the working model is incorrect <span class="citation">(Davidson &amp; Flachaire, 2008; MacKinnon, 2006; Pustejovsky &amp; Tipton, 2018)</span>.</p></li>
-<li><p>Obtain new outcome scores by adding the transformed residuals to the predicted values from the null model fit on the original data.</p></li>
-<li><p>Re-estimate the full model with the new calculated outcome scores and obtain the test statistic.</p></li>
-<li><p>Repeat steps 3-5 <span class="math inline">\(R\)</span> times. Calculate p-value:</p></li>
+<li><p>Generate an auxiliary random variable that has mean of 0 and
+variance of 1 and multiply the residuals by the random variable (e.g.,
+Rademacher weights) set to be constant within clusters (CWB). The
+residuals can also be multiplied by CR2 adjustment matrices before
+multiplying by weights (CWB Adjusted). Adjusting the residuals by CR2
+matrices can correct the under-estimation of the error variance when the
+working model is incorrect <span class="citation">(Davidson &amp;
+Flachaire, 2008; MacKinnon, 2006; Pustejovsky &amp; Tipton,
+2018)</span>.</p></li>
+<li><p>Obtain new outcome scores by adding the transformed residuals to
+the predicted values from the null model fit on the original
+data.</p></li>
+<li><p>Re-estimate the full model with the new calculated outcome scores
+and obtain the test statistic.</p></li>
+<li><p>Repeat steps 3-5 <span class="math inline">\(R\)</span> times.
+Calculate p-value:</p></li>
 </ol>
-<p><span class="math display">\[p = \frac{1}{R} \sum_{r = 1}^R I\left(F^{(r)} &gt; F\right)\]</span></p>
-<p>The results of the simulation studies conducted in <span class="citation">Joshi, Pustejovsky, &amp; Beretvas (2021)</span> did not show any difference in Type 1 error rates or power when multiplying the results by CR2 adjustments matrices. However, the authors did not study major mis-specifications of the working model in the simulation studies.</p>
+<p><span class="math display">\[p = \frac{1}{R} \sum_{r = 1}^R
+I\left(F^{(r)} &gt; F\right)\]</span></p>
+<p>The results of the simulation studies conducted in <span class="citation">Joshi et al. (2022)</span> did not show any difference
+in Type 1 error rates or power when multiplying the results by CR2
+adjustments matrices. However, the authors did not study major
+mis-specifications of the working model in the simulation studies.</p>
 </div>
 </div>
 <div id="example-from-wildmeta" class="section level1" number="3">
-<h1 number="3"><span class="header-section-number">3</span> Example from <code>wildmeta</code></h1>
-<p>This section presents examples of how to implement cluster wild bootstrapping using functions from our <code>wildmeta</code> package. The functions in our package work with models fit using <code>robumeta::robu()</code> <span class="citation">(Fisher, Tipton, &amp; Zhipeng, 2017)</span> and <code>metafor::rma.mv()</code> <span class="citation">(Viechtbauer, 2010)</span>.</p>
+<h1><span class="header-section-number">3</span> Example from
+<code>wildmeta</code></h1>
+<p>This section presents examples of how to implement cluster wild
+bootstrapping using functions from our <code>wildmeta</code> package.
+The functions in our package work with models fit using
+<code>robumeta::robu()</code> <span class="citation">(Fisher, Tipton,
+&amp; Zhipeng, 2017)</span> and <code>metafor::rma.mv()</code> <span class="citation">(Viechtbauer, 2010)</span>.</p>
 <div id="robumeta-models" class="section level2" number="3.1">
-<h2 number="3.1"><span class="header-section-number">3.1</span> <code>robumeta</code> models</h2>
-<p>The examples in this vignette utilize the <code>SATCoaching</code> dataset from the <code>clubSandwich</code> package <span class="citation">(Pustejovsky, 2020)</span>, originally from <span class="citation">DerSimonian &amp; Laird (1983)</span>. The standardized mean differences represent the effects of SAT coaching on SAT verbal (SATV) and/or SAT math (SATM) scores.</p>
-<p>The code below runs cluster wild bootstrapping to test the multiple-contrast hypothesis that the effect of coaching does not differ based on study type. The <code>study_type</code> variable indicates whether groups compared in primary studies were matched, randomized, or non-equivalent. The meta-regression model also controls for hours of coaching provided (<code>hrs</code>) and whether the students took math or verbal test (<code>test</code>). Below, we run a zero-intercept meta-regression model.</p>
-<p>The <code>Wald_test_cwb()</code> function takes in a full model fit using the <code>robumeta::robu()</code> function. Further, users need to specify the constraint to be tested. Below, we create a constraint matrix using <code>clubSandwich::constrain_equal()</code>; indices 1 to 3 correspond to the three levels of the <code>study_type</code> variable. Users can specify the number of bootstrap replications R. In the examples below, we set the value to 99 to speed up computation time. In practice, we recommend using a higher number of bootstrap replications, such as 1999. Using more replications will improve power. Please see <span class="citation">Davidson &amp; MacKinnon (2000)</span> for guidance on the number of bootstrap replications to use. Users can also set the seed in the <code>Wald_test_cwb()</code> function.</p>
+<h2><span class="header-section-number">3.1</span> <code>robumeta</code>
+models</h2>
+<p>The examples in this vignette utilize the <code>SATCoaching</code>
+dataset from the <code>clubSandwich</code> package <span class="citation">(Pustejovsky, 2020)</span>, originally from <span class="citation">DerSimonian &amp; Laird (1983)</span>. The standardized
+mean differences represent the effects of SAT coaching on SAT verbal
+(SATV) and/or SAT math (SATM) scores.</p>
+<p>The code below runs cluster wild bootstrapping to test the
+multiple-contrast hypothesis that the effect of coaching does not differ
+based on study type. The <code>study_type</code> variable indicates
+whether groups compared in primary studies were matched, randomized, or
+non-equivalent. The meta-regression model also controls for hours of
+coaching provided (<code>hrs</code>) and whether the students took math
+or verbal test (<code>test</code>). Below, we run a zero-intercept
+meta-regression model.</p>
+<p>The <code>Wald_test_cwb()</code> function takes in a full model fit
+using the <code>robumeta::robu()</code> function. Further, users need to
+specify the constraint to be tested. Below, we create a constraint
+matrix using <code>clubSandwich::constrain_equal()</code>; indices 1 to
+3 correspond to the three levels of the <code>study_type</code>
+variable. Users can specify the number of bootstrap replications R. In
+the examples below, we set the value to 99 to speed up computation time.
+In practice, we recommend using a higher number of bootstrap
+replications, such as 1999. Using more replications will improve power.
+Please see <span class="citation">Davidson &amp; MacKinnon (2000)</span>
+for guidance on the number of bootstrap replications to use. Users can
+also set the seed in the <code>Wald_test_cwb()</code> function.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wildmeta)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(clubSandwich)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(robumeta)</span>
@@ -238,136 +580,242 @@ div.csl-indent {
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">R =</span> <span class="dv">99</span>,</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">seed =</span> <span class="dv">20201228</span>)</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Test Adjustment CR_type Statistic  R     p_val</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  CWB        CR0     CR0   Naive-F 99 0.2323232</span></span></code></pre></div>
-<p>The output of the function contains the name of the test, the adjustment used for the bootstrap process, the type of variance-covariance matrix used, the type of test statistic, the number of bootstrap replicates, and the bootstrapped p-value.</p>
-<p>The users can also specify whether to adjust the residuals with <code>CR1</code> to <code>CR4</code>matrices when bootstrapping as below. The default value for the <code>adjust</code> argument is set to <code>CR0</code>. Below is an example where we set the adjust the residuals using <code>CR2</code> matrices.</p>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  CWB        CR0     CR0   Naive-F 99 0.3939394</span></span></code></pre></div>
+<p>The output of the function contains the name of the test, the
+adjustment used for the bootstrap process, the type of
+variance-covariance matrix used, the type of test statistic, the number
+of bootstrap replicates, and the bootstrapped p-value.</p>
+<p>The users can also specify whether to adjust the residuals with
+<code>CR1</code> to <code>CR4</code>matrices when bootstrapping as
+below. The default value for the <code>adjust</code> argument is set to
+<code>CR0</code>. Below is an example where we set the adjust the
+residuals using <code>CR2</code> matrices.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Wald_test_cwb</span>(<span class="at">full_model =</span> robu_model,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">constraints =</span> <span class="fu">constrain_equal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">R =</span> <span class="dv">99</span>,</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">adjust =</span> <span class="st">&quot;CR2&quot;</span>,</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">seed =</span> <span class="dv">20201229</span>)</span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;           Test Adjustment CR_type Statistic  R     p_val</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 CWB Adjusted        CR2     CR0   Naive-F 99 0.3434343</span></span></code></pre></div>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 CWB Adjusted        CR2     CR0   Naive-F 99 0.3535354</span></span></code></pre></div>
 </div>
 <div id="metafor-models" class="section level2" number="3.2">
-<h2 number="3.2"><span class="header-section-number">3.2</span> <code>metafor</code> models</h2>
-<p>In the examples above, we used the <code>robumeta::robu()</code> function to fit the full model. In this section, we fit the full model using the <code>metafor::rma.mv()</code> function.</p>
+<h2><span class="header-section-number">3.2</span> <code>metafor</code>
+models</h2>
+<p>In the examples above, we used the <code>robumeta::robu()</code>
+function to fit the full model. In this section, we fit the full model
+using the <code>metafor::rma.mv()</code> function.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(metafor)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rma_model <span class="ot">&lt;-</span> <span class="fu">rma.mv</span>(<span class="at">yi =</span> d <span class="sc">~</span> <span class="dv">0</span> <span class="sc">+</span> study_type <span class="sc">+</span> hrs <span class="sc">+</span> test,</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">V =</span> V,</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">random =</span> <span class="sc">~</span> study_type <span class="sc">|</span> study,</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> SATcoaching)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">Wald_test_cwb</span>(<span class="at">full_model =</span> rma_model,</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">constraints =</span> <span class="fu">constrain_equal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">R =</span> <span class="dv">99</span>,</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">seed =</span> <span class="dv">20210314</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Test Adjustment CR_type Statistic  R     p_val</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  CWB        CR0     CR0   Naive-F 99 0.1919192</span></span></code></pre></div>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> SATcoaching,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                    <span class="at">subset =</span> <span class="sc">!</span><span class="fu">is.na</span>(hrs) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.na</span>(test))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">Wald_test_cwb</span>(<span class="at">full_model =</span> rma_model,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>              <span class="at">constraints =</span> <span class="fu">constrain_equal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">R =</span> <span class="dv">99</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">seed =</span> <span class="dv">20210314</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Test Adjustment CR_type Statistic  R     p_val</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  CWB        CR0     CR0   Naive-F 99 0.2828283</span></span></code></pre></div>
 </div>
 <div id="timing" class="section level2" number="3.3">
-<h2 number="3.3"><span class="header-section-number">3.3</span> Timing</h2>
+<h2><span class="header-section-number">3.3</span> Timing</h2>
 <div id="robumeta-models-1" class="section level3" number="3.3.1">
-<h3 number="3.3.1"><span class="header-section-number">3.3.1</span> <code>robumeta</code> models</h3>
-<p>The <code>Wald_test_cwb()</code> function runs within a minute for correlated effects models even when using a large number of bootstrap replications. Below is an example with 999 bootstrap replications.</p>
+<h3><span class="header-section-number">3.3.1</span>
+<code>robumeta</code> models</h3>
+<p>The <code>Wald_test_cwb()</code> function runs within a minute for
+correlated effects models even when using a large number of bootstrap
+replications. Below is an example with 1999 bootstrap replications.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">Wald_test_cwb</span>(<span class="at">full_model =</span> robu_model,</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">constraints =</span> <span class="fu">constrain_equal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">R =</span> <span class="dv">999</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                       <span class="at">R =</span> <span class="dv">1999</span>, </span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">seed =</span> <span class="dv">20201229</span>)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   9.067   0.125   9.369</span></span></code></pre></div>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  17.011   0.133  17.245</span></span></code></pre></div>
+<p>Computation speed can sometimes be improved by setting a parallel
+processing plan using the <code>future</code> package:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (parallelly<span class="sc">::</span><span class="fu">supportsMulticore</span>()) {</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plan</span>(multicore) </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plan</span>(multisession)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>parallelly<span class="sc">::</span><span class="fu">availableWorkers</span>() <span class="sc">|&gt;</span> <span class="fu">length</span>()</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">Wald_test_cwb</span>(<span class="at">full_model =</span> robu_model,</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>                       <span class="at">constraints =</span> <span class="fu">constrain_equal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">R =</span> <span class="dv">1999</span>, </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">seed =</span> <span class="dv">20201229</span>)</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    user  system elapsed </span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0.499   0.022  14.365</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(sequential)</span></code></pre></div>
 </div>
 <div id="metafor-models-1" class="section level3" number="3.3.2">
-<h3 number="3.3.2"><span class="header-section-number">3.3.2</span> <code>metafor</code> models</h3>
-<p>CWB takes longer with models fit using <code>metafor::rma.mv()</code>. Below is an example:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Wald_test_cwb</span>(<span class="at">full_model =</span> rma_model,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">constraints =</span> <span class="fu">constrain_equal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">R =</span> <span class="dv">999</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">seed =</span> <span class="dv">20210314</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 224.528  31.339 273.104</span></span></code></pre></div>
+<h3><span class="header-section-number">3.3.2</span>
+<code>metafor</code> models</h3>
+<p>CWB takes longer with models fit using
+<code>metafor::rma.mv()</code>. Below is an example with 99 bootstrap
+replications:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Wald_test_cwb</span>(<span class="at">full_model =</span> rma_model,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">constraints =</span> <span class="fu">constrain_equal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">R =</span> <span class="dv">99</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">seed =</span> <span class="dv">20210314</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    user  system elapsed </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  20.205   2.504  22.866</span></span></code></pre></div>
+<p>Again, computation speed can sometimes be improved by setting a
+parallel processing plan using the <code>future</code> package:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (parallelly<span class="sc">::</span><span class="fu">supportsMulticore</span>()) {</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plan</span>(multicore) </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plan</span>(multisession)</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>parallelly<span class="sc">::</span><span class="fu">availableWorkers</span>() <span class="sc">|&gt;</span> <span class="fu">length</span>()</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Wald_test_cwb</span>(<span class="at">full_model =</span> rma_model,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">constraints =</span> <span class="fu">constrain_equal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>),</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">R =</span> <span class="dv">99</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">seed =</span> <span class="dv">20210314</span>)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    user  system elapsed </span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0.761   0.046  16.638</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(sequential)</span></code></pre></div>
 </div>
 </div>
 </div>
 <div id="bootstrap-distribution-plot" class="section level1" number="4">
-<h1 number="4"><span class="header-section-number">4</span> Bootstrap Distribution Plot</h1>
-<p>The function <a href="https://meghapsimatrix.github.io/wildmeta/reference/plot.Wald_test_wildmeta.html"><code>plot()</code></a> creates a <code>ggplot</code> figure representing the distribution of the bootstrap replicates based on the results from the <code>Wald_test_cwb()</code> function. The dashed line represents the <span class="math inline">\(F\)</span> test statistic from the original full model. The bootstrapped p-value is the proportion of bootstrapped <span class="math inline">\(F\)</span> test statistics that are greater than the original <span class="math inline">\(F\)</span> statistic.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">fill =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
-<p><img src="data:image/png;base64,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" /><!-- --></p>
+<h1><span class="header-section-number">4</span> Bootstrap Distribution
+Plot</h1>
+<p>The function <a href="https://meghapsimatrix.github.io/wildmeta/reference/plot.Wald_test_wildmeta.html"><code>plot()</code></a>
+creates a <code>ggplot</code> figure representing the distribution of
+the bootstrap replicates based on the results from the
+<code>Wald_test_cwb()</code> function. The dashed line represents the
+<span class="math inline">\(F\)</span> test statistic from the original
+full model. The bootstrapped p-value is the proportion of bootstrapped
+<span class="math inline">\(F\)</span> test statistics that are greater
+than the original <span class="math inline">\(F\)</span> statistic.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res, <span class="at">fill =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
 </div>
 <div id="references" class="section level1 unnumbered">
 <h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
 <div id="ref-becker2000multivariate" class="csl-entry">
-Becker, B. J. (2000). Multivariate meta-analysis. In <em>Handbook of applied multivariate statistics and mathematical modeling</em> (pp. 499–525). Elsevier.
+Becker, B. J. (2000). Multivariate meta-analysis. In <em>Handbook of
+applied multivariate statistics and mathematical modeling</em> (pp.
+499–525). Elsevier.
 </div>
 <div id="ref-boos2003introduction" class="csl-entry">
-Boos, D. D., &amp; others. (2003). Introduction to the bootstrap world. <em>Statistical Science</em>, <em>18</em>(2), 168–174.
+Boos, D. D.others. (2003). Introduction to the bootstrap world.
+<em>Statistical Science</em>, <em>18</em>(2), 168–174.
 </div>
 <div id="ref-cameron_bootstrap-based_nodate" class="csl-entry">
-Cameron, A. C., Gelbach, J. B., &amp; Miller, D. L. (2008). Bootstrap-based improvements for inference with clustered errors. <em>The Review of Economics and Statistics</em>, 47.
+Cameron, A. C., Gelbach, J. B., &amp; Miller, D. L. (2008).
+Bootstrap-based improvements for inference with clustered errors.
+<em>The Review of Economics and Statistics</em>, 47.
 </div>
 <div id="ref-cooper1998synthesizing" class="csl-entry">
-Cooper, H. M. (1998). <em>Synthesizing research: A guide for literature reviews</em> (Vol. 2). Sage.
+Cooper, H. M. (1998). <em>Synthesizing research: A guide for literature
+reviews</em> (Vol. 2). Sage.
 </div>
 <div id="ref-davidson_wild_2008" class="csl-entry">
-Davidson, R., &amp; Flachaire, E. (2008). The wild bootstrap, tamed at last. <em>Journal of Econometrics</em>, <em>146</em>(1), 162–169.
+Davidson, R., &amp; Flachaire, E. (2008). The wild bootstrap, tamed at
+last. <em>Journal of Econometrics</em>, <em>146</em>(1), 162–169.
 </div>
 <div id="ref-davidson2000bootstrap" class="csl-entry">
-Davidson, R., &amp; MacKinnon, J. G. (2000). Bootstrap tests: How many bootstraps? <em>Econometric Reviews</em>, <em>19</em>(1), 55–68.
+Davidson, R., &amp; MacKinnon, J. G. (2000). Bootstrap tests: How many
+bootstraps? <em>Econometric Reviews</em>, <em>19</em>(1), 55–68.
 </div>
 <div id="ref-dersimonian1983evaluating" class="csl-entry">
-DerSimonian, R., &amp; Laird, N. (1983). Evaluating the effect of coaching on SAT scores: A meta-analysis. <em>Harvard Educational Review</em>, <em>53</em>(1), 1–15.
+DerSimonian, R., &amp; Laird, N. (1983). Evaluating the effect of
+coaching on SAT scores: A meta-analysis. <em>Harvard Educational
+Review</em>, <em>53</em>(1), 1–15.
 </div>
 <div id="ref-robu_2020" class="csl-entry">
-Fisher, Z., Tipton, E., &amp; Zhipeng, H. (2017). <em>Robumeta: Robust variance meta-regression</em>. Retrieved from <a href="https://CRAN.R-project.org/package=robumeta">https://CRAN.R-project.org/package=robumeta</a>
+Fisher, Z., Tipton, E., &amp; Zhipeng, H. (2017). <em>Robumeta: Robust
+variance meta-regression</em>. Retrieved from <a href="https://CRAN.R-project.org/package=robumeta">https://CRAN.R-project.org/package=robumeta</a>
 </div>
 <div id="ref-freedman1981bootstrapping" class="csl-entry">
-Freedman, D. A. (1981). Bootstrapping regression models. <em>The Annals of Statistics</em>, <em>9</em>(6), 1218–1228.
+Freedman, D. A. (1981). Bootstrapping regression models. <em>The Annals
+of Statistics</em>, <em>9</em>(6), 1218–1228.
 </div>
 <div id="ref-freedman1984bootstrapping" class="csl-entry">
-Freedman, D. A. (1984). On bootstrapping two-stage least-squares estimates in stationary linear models. <em>The Annals of Statistics</em>, <em>12</em>(3), 827–842.
+Freedman, D. A. (1984). On bootstrapping two-stage least-squares
+estimates in stationary linear models. <em>The Annals of
+Statistics</em>, <em>12</em>(3), 827–842.
 </div>
 <div id="ref-hedges_robust_2010" class="csl-entry">
-Hedges, L. V., Tipton, E., &amp; Johnson, M. C. (2010). Robust variance estimation in meta-regression with dependent effect size estimates. <em>Research Synthesis Methods</em>, <em>1</em>(1), 39–65. <a href="https://doi.org/10.1002/jrsm.5">https://doi.org/10.1002/jrsm.5</a>
+Hedges, L. V., Tipton, E., &amp; Johnson, M. C. (2010). Robust variance
+estimation in meta-regression with dependent effect size estimates.
+<em>Research Synthesis Methods</em>, <em>1</em>(1), 39–65. <a href="https://doi.org/10.1002/jrsm.5">https://doi.org/10.1002/jrsm.5</a>
 </div>
-<div id="ref-joshi_pustejovsky_beretvas_2021" class="csl-entry">
-Joshi, M., Pustejovsky, J. E., &amp; Beretvas, S. N. (2021). <em>Cluster wild bootstrapping to handle dependent effect sizes in meta-analysis with a small number of studies</em>. <a href="https://doi.org/10.31222/osf.io/x6uhk">https://doi.org/10.31222/osf.io/x6uhk</a>
+<div id="ref-joshi2022cluster" class="csl-entry">
+Joshi, M., Pustejovsky, J. E., &amp; Beretvas, S. N. (2022). Cluster
+wild bootstrapping to handle dependent effect sizes in meta-analysis
+with a small number of studies. <em>Research Synthesis Methods</em>. <a href="https://doi.org/10.1002/jrsm.1554">https://doi.org/10.1002/jrsm.1554</a>
 </div>
 <div id="ref-mackinnon2006bootstrap" class="csl-entry">
-MacKinnon, J. G. (2006). Bootstrap methods in econometrics. <em>Economic Record</em>, <em>82</em>, S2–S18.
+MacKinnon, J. G. (2006). Bootstrap methods in econometrics. <em>Economic
+Record</em>, <em>82</em>, S2–S18.
 </div>
 <div id="ref-mackinnon2009bootstrap" class="csl-entry">
-MacKinnon, J. G. (2009). Bootstrap hypothesis testing. <em>Handbook of Computational Econometrics</em>, <em>183</em>, 213.
+MacKinnon, J. G. (2009). Bootstrap hypothesis testing. <em>Handbook of
+Computational Econometrics</em>, <em>183</em>, 213.
 </div>
 <div id="ref-mackinnon2015wild" class="csl-entry">
-MacKinnon, J. G. (2015). Wild cluster bootstrap confidence intervals. <em>L’Actualit<span>é</span> <span>É</span>conomique</em>, <em>91</em>(1-2), 11–33.
+MacKinnon, J. G. (2015). Wild cluster bootstrap confidence intervals.
+<em>L’Actualit<span>é</span> <span>É</span>conomique</em>,
+<em>91</em>(1-2), 11–33.
 </div>
 <div id="ref-pusto_2020" class="csl-entry">
-Pustejovsky, J. E. (2020). <em>clubSandwich: Cluster-robust (sandwich) variance estimators with small-sample corrections</em>. Retrieved from <a href="https://CRAN.R-project.org/package=clubSandwich">https://CRAN.R-project.org/package=clubSandwich</a>
+Pustejovsky, J. E. (2020). <em>clubSandwich: Cluster-robust (sandwich)
+variance estimators with small-sample corrections</em>. Retrieved from
+<a href="https://CRAN.R-project.org/package=clubSandwich">https://CRAN.R-project.org/package=clubSandwich</a>
 </div>
 <div id="ref-pustejovsky_small-sample_2018" class="csl-entry">
-Pustejovsky, J. E., &amp; Tipton, E. (2018). Small-sample methods for cluster-robust variance estimation and hypothesis testing in fixed effects models. <em>Journal of Business &amp; Economic Statistics</em>, <em>36</em>(4), 672–683.
+Pustejovsky, J. E., &amp; Tipton, E. (2018). Small-sample methods for
+cluster-robust variance estimation and hypothesis testing in fixed
+effects models. <em>Journal of Business &amp; Economic Statistics</em>,
+<em>36</em>(4), 672–683.
 </div>
 <div id="ref-pustejovsky2020meta" class="csl-entry">
-Pustejovsky, J. E., &amp; Tipton, E. (2021). Meta-analysis with robust variance estimation: Expanding the range of working models. <em>Prevention Science</em>.
+Pustejovsky, J. E., &amp; Tipton, E. (2021). Meta-analysis with robust
+variance estimation: Expanding the range of working models.
+<em>Prevention Science</em>.
 </div>
 <div id="ref-tipton_small_2015" class="csl-entry">
-Tipton, E. (2015). Small sample adjustments for robust variance estimation with meta-regression. <em>Psychological Methods</em>, <em>20</em>(3), 375.
+Tipton, E. (2015). Small sample adjustments for robust variance
+estimation with meta-regression. <em>Psychological Methods</em>,
+<em>20</em>(3), 375.
 </div>
 <div id="ref-tipton_small-sample_2015" class="csl-entry">
-Tipton, E., &amp; Pustejovsky, J. E. (2015). Small-sample adjustments for tests of moderators and model fit using robust variance estimation in meta-regression. <em>Journal of Educational and Behavioral Statistics</em>, <em>40</em>(6), 604–634.
+Tipton, E., &amp; Pustejovsky, J. E. (2015). Small-sample adjustments
+for tests of moderators and model fit using robust variance estimation
+in meta-regression. <em>Journal of Educational and Behavioral
+Statistics</em>, <em>40</em>(6), 604–634.
 </div>
 <div id="ref-viechtbauer2010conducting" class="csl-entry">
-Viechtbauer, W. (2010). Conducting meta-analyses in <span>R</span> with the metafor package. <em>Journal of Statistical Software</em>, <em>36</em>(3), 1–48.
+Viechtbauer, W. (2010). Conducting meta-analyses in <span>R</span> with
+the metafor package. <em>Journal of Statistical Software</em>,
+<em>36</em>(3), 1–48.
 </div>
 <div id="ref-webb2013reworking" class="csl-entry">
-Webb, M. D. (2013). <em>Reworking wild bootstrap based inference for clustered errors</em>. Queen’s Economics Department Working Paper.
+Webb, M. D. (2013). <em>Reworking wild bootstrap based inference for
+clustered errors</em>. Queen’s Economics Department Working Paper.
 </div>
 </div>
 </div>
