@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-<img src="man/figures/wildmeta_hex.png" align="right" alt="" width="180" />
+<img src="man/figures/wildmeta_hex.png" align="right" width="180"/>
 
 # wildmeta
 
@@ -14,6 +14,7 @@ coverage](https://codecov.io/gh/meghapsimatrix/wildmeta/branch/main/graph/badge.
 status](https://www.r-pkg.org/badges/version/wildmeta)](https://CRAN.R-project.org/package=wildmeta)
 [![](http://cranlogs.r-pkg.org/badges/grand-total/wildmeta)](https://CRAN.R-project.org/package=wildmeta)
 [![](http://cranlogs.r-pkg.org/badges/last-month/wildmeta)](https://CRAN.R-project.org/package=wildmeta)
+
 <!-- badges: end -->
 
 Typical methods to conduct meta-analysis—pooling effect sizes or
@@ -39,9 +40,9 @@ Pustejovsky & Beretvas (2022) showed, through simulations, that the HTZ
 test can be conservative. The authors examined another method, cluster
 wild bootstrapping (CWB), that has been studied in the econometrics
 literature but not in the meta-analytic context. The results of the
-simulations from Joshi, Pustejovsky & Beretvas (2021) showed that CWB
-adequately controlled for Type 1 error rate and provided higher power
-than the HTZ test, especially for multiple-contrast hypothesis tests.
+simulations from Joshi et al. (2022) showed that CWB adequately
+controlled for Type 1 error rate and provided higher power than the HTZ
+test, especially for multiple-contrast hypothesis tests.
 
 The goal of this package is to provide applied meta-analytic researchers
 a set of functions with which they can conduct single coefficient tests
@@ -152,7 +153,8 @@ Viechtbauer](https://wvbauer.com/doku.php/home) for helping us solve
 [this
 issue](https://stat.ethz.ch/pipermail/r-help/2021-November/472977.html)
 we had with the `update()` function. We also thank Mikkel Vembye for
-testing our package and giving us very helpful feedback.
+testing our package and giving us very helpful feedback, and [Sangdon
+Lim](https://sdlim.com/) for helping us debug some issues.
 
 # References
 

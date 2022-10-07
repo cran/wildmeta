@@ -38,7 +38,7 @@ rma_model <- rma.mv(yi = d ~ 0 + study_type + hrs + test,
 
 Wald_test_cwb(full_model = rma_model,
               constraints = constrain_equal(1:3),
-              R = 99,
+              R = 19,
               seed = 20210314)
 
 ## -----------------------------------------------------------------------------
@@ -57,7 +57,8 @@ if (parallelly::supportsMulticore()) {
 } else {
   plan(multisession)
 }
-parallelly::availableWorkers() |> length()
+
+nbrOfWorkers()
 
 system.time(
   res <- Wald_test_cwb(full_model = robu_model,
@@ -68,14 +69,20 @@ system.time(
 
 plan(sequential)
 
+## ---- echo = FALSE------------------------------------------------------------
+reps <- 99L
+
 ## ---- warning = FALSE---------------------------------------------------------
+reps
+
 system.time(
-  Wald_test_cwb(full_model = rma_model,
-                constraints = constrain_equal(1:3),
-                R = 99,
-                seed = 20210314)
+  res_seq <- Wald_test_cwb(full_model = rma_model,
+                           constraints = constrain_equal(1:3),
+                           R = reps,
+                           seed = 20210314)
 )
 
+res_seq
 
 ## ---- eval = requireNamespace("future", quietly = TRUE) & requireNamespace("parallelly", quietly = TRUE) & requireNamespace("future.apply", quietly = TRUE)----
 library(future)
@@ -85,16 +92,19 @@ if (parallelly::supportsMulticore()) {
 } else {
   plan(multisession)
 }
-parallelly::availableWorkers() |> length()
+
+nbrOfWorkers()
 
 system.time(
-  Wald_test_cwb(full_model = rma_model,
-                constraints = constrain_equal(1:3),
-                R = 99,
-                seed = 20210314)
+  res_para <- Wald_test_cwb(full_model = rma_model,
+                            constraints = constrain_equal(1:3),
+                            R = reps,
+                            seed = 20210314)
 )
 
 plan(sequential)
+
+res_para
 
 ## ---- eval = requireNamespace("ggplot2", quietly = TRUE), fig.width = 6, fig.height = 2.5----
 plot(res, fill = "darkred", alpha = 0.5)
