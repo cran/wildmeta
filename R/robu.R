@@ -38,12 +38,28 @@ estimate_null.robu <- function(full_model,
 # get the cluster ---------------------------------------------------------
 #' @export
 
-get_cluster.robu <- function(full_model) {
+get_cluster.robu <- function(model) {
 
-  ord <- order(order(full_model$study_orig_id))
-  cluster <- full_model$data.full$study[ord]
+  ord <- order(order(model$study_orig_id))
+  cluster <- model$data.full$study[ord]
 
   return(cluster)
+}
+
+# get indicators for complete observations----------------------------
+#' @importFrom stats get_all_vars
+#' @export
+
+get_obs_rows.robu <- function(model) {
+
+  mf <- model$cl
+  m <- match(c("formula", "studynum", "var.eff.size", "userweights"), names(mf))
+  m <- m[!is.na(m)]
+  mf <- mf[c(1L, m)]
+  mf[[1L]] <- as.name("get_all_vars")
+  mf <- eval(mf, model$data)
+  stats::complete.cases(mf)
+
 }
 
 # get the F  --------------------------------------------------------------
@@ -82,7 +98,7 @@ get_boot_F_f.robu <- function(full_model,
                               type = "CR0",
                               test = "Naive-F") {
 
-  function(y_boot) {
+  function(y_boot, cluster = cluster) {
 
     # use update robu to fit bootstrapped model
 

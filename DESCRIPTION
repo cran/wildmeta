@@ -1,6 +1,6 @@
 Package: wildmeta
 Title: Cluster Wild Bootstrapping for Meta-Analysis
-Version: 0.3.0
+Version: 0.3.1
 Authors@R: c(
     person(given = "Megha", 
            family = "Joshi", 
@@ -15,23 +15,25 @@ Authors@R: c(
     person(given = "Pierce", 
            family = "Cappelli", 
            email = "pierce.cappelli@utexas.edu", 
-           role = c("aut")))
+           role = c("aut"),
+           comment = c(ORCID = "0000-0001-8426-8132")))
 Description: Conducts single coefficient tests and multiple-contrast hypothesis tests of meta-regression models using cluster wild bootstrapping, based on methods examined in Joshi, Pustejovsky, and Beretvas (2022) <DOI:10.1002/jrsm.1554>. 
 URL: https://meghapsimatrix.github.io/wildmeta/index.html
 BugReports: https://github.com/meghapsimatrix/wildmeta/issues
 License: GPL-3
 Encoding: UTF-8
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Imports: clubSandwich (>= 0.5.4), sandwich, robumeta, metafor, stats
 Suggests: testthat (>= 3.0.0), knitr, rmarkdown, ggplot2, covr,
         mockery, future, future.apply, parallelly
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2022-10-06 15:01:39 UTC; meghajoshi
+Packaged: 2023-02-15 16:32:04 UTC; meghajoshi
 Author: Megha Joshi [aut, cre] (<https://orcid.org/0000-0001-7936-076X>),
   James Pustejovsky [aut] (<https://orcid.org/0000-0003-0591-9465>),
-  Pierce Cappelli [aut]
+  Pierce Cappelli [aut] (<https://orcid.org/0000-0001-8426-8132>)
 Maintainer: Megha Joshi <megha.j456@gmail.com>
+Depends: R (>= 3.5.0)
 Repository: CRAN
-Date/Publication: 2022-10-07 06:00:02 UTC
+Date/Publication: 2023-02-15 17:00:02 UTC

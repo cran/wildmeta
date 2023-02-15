@@ -75,47 +75,48 @@ test_that("get_cluster() works for rma.uni objects.", {
   expect_equal(get_cluster(mod_F), study_fac, tolerance = tol)
 })
 
-test_that("get_boot_F() works for rma.uni objects.", {
+test_that("get_boot_F_f() works for rma.uni objects.", {
 
   y_boot <- oswald2013$yi
 
   Cmat_int <- constrain_zero(1, coefs = coef(mod_A))
 
+  f_A <- get_boot_F_f(mod_A, C_mat = Cmat_int)
   expect_equal(
-    get_boot_F(mod_A, y_boot = y_boot, C_mat = Cmat_int, cluster = get_cluster(mod_A)),
+    f_A(y_boot = y_boot, cluster = get_cluster(mod_A)),
     Wald_test(mod_A, cluster = get_cluster(mod_A),
               constraints = Cmat_int, vcov = "CR0", test = "Naive-F")$Fstat, tolerance = tol
   )
 
+  f_B <- get_boot_F_f(mod_B, C_mat = Cmat_A, type = "CR1", test = "HTZ")
   expect_equal(
-    get_boot_F(mod_B, y_boot = y_boot, C_mat = Cmat_A, cluster = get_cluster(mod_B),
-               type = "CR1", test = "HTZ"),
+    f_B(y_boot = y_boot, cluster = get_cluster(mod_B)),
     Wald_test(mod_B, cluster = get_cluster(mod_B),
               constraints = Cmat_A, vcov = "CR1", test = "HTZ")$Fstat, tolerance = tol
   )
 
+  f_C1 <- get_boot_F_f(mod_C, C_mat = Cmat_B, type = "CR2", test = "EDT")
   expect_equal(
-    get_boot_F(mod_C, y_boot = y_boot, C_mat = Cmat_B, cluster = get_cluster(mod_C),
-               type = "CR2", test = "EDT"),
+    f_C1(y_boot = y_boot, cluster = get_cluster(mod_C)),
     Wald_test(mod_C, cluster = get_cluster(mod_C),
               constraints = Cmat_B, vcov = "CR2", test = "EDT")$Fstat, tolerance = tol
   )
 
+  f_C2 <- get_boot_F_f(mod_C, C_mat = Cmat_D, type = "CR3", test = "chi-sq")
   expect_equal(
-    get_boot_F(mod_C, y_boot = y_boot, C_mat = Cmat_D, cluster = get_cluster(mod_C),
-               type = "CR3", test = "chi-sq"),
+    f_C2(y_boot = y_boot, cluster = get_cluster(mod_C)),
     Wald_test(mod_C, cluster = get_cluster(mod_C), constraints = Cmat_D, vcov = "CR3", test = "chi-sq")$Fstat, tolerance = tol
   )
 
+  f_C3 <- get_boot_F_f(mod_C, C_mat = Cmat_E, type = "CR2", test = "Naive-Fp")
   expect_equal(
-    get_boot_F(mod_C, y_boot = y_boot, C_mat = Cmat_E, cluster = get_cluster(mod_C),
-               type = "CR2", test = "Naive-Fp"),
+    f_C3(y_boot = y_boot, cluster = get_cluster(mod_C)),
     Wald_test(mod_C, cluster = get_cluster(mod_C), constraints = Cmat_E, vcov = "CR2", test = "Naive-Fp")$Fstat, tolerance = tol
   )
 
+  f_C4 <- get_boot_F_f(mod_C, C_mat = Cmat_F, type = "CR0", test = "HTA")
   expect_equal(
-    get_boot_F(mod_C, y_boot = y_boot, C_mat = Cmat_F, cluster = get_cluster(mod_C),
-               type = "CR0", test = "HTA"),
+    f_C4(y_boot = y_boot, cluster = get_cluster(mod_C)),
     Wald_test(mod_C, cluster = get_cluster(mod_C),
               constraints = Cmat_F, vcov = "CR0", test = "HTA")$Fstat, tolerance = tol
   )
@@ -134,10 +135,8 @@ test_that("get_boot_F() works for rma.uni objects.", {
   Cmat_G <- constrain_equal("Crit.Cat", reg_ex = TRUE, coefs = coef(mod_G))
   F_stat <- Wald_test(mod_F, cluster = get_cluster(mod_F),
                       constraints = Cmat_G, vcov = "CR0", test = "HTZ")$Fstat
-  G_stat <- get_boot_F(mod_G, y_boot = y_boot, C_mat = Cmat_G, cluster = get_cluster(mod_G),
-                       type = "CR0", test = "HTZ")
-  H_stat <- get_boot_F(mod_H, y_boot = y_boot, C_mat = Cmat_G, cluster = get_cluster(mod_G),
-                       type = "CR0", test = "HTZ")
+  G_stat <- get_boot_F_f(mod_G, C_mat = Cmat_G, type = "CR0", test = "HTZ")(y_boot = y_boot, cluster = get_cluster(mod_G))
+  H_stat <- get_boot_F_f(mod_H, C_mat = Cmat_G, type = "CR0", test = "HTZ")(y_boot = y_boot, cluster = get_cluster(mod_H))
 
   expect_equal(G_stat, F_stat, tolerance = tol)
 
@@ -284,7 +283,6 @@ test_that("Wald_test_cwb() results do not depend on sort order.", {
 })
 
 
-
 test_that("Wald_test_cwb() works when rma.uni uses subset.", {
 
   oswald_sub <- subset(oswald2013_full, Crit.Cat == "Microbehavior")
@@ -320,6 +318,108 @@ test_that("Wald_test_cwb() works when rma.uni uses subset.", {
 
   expect_equal(attr(test_full, "original"), attr(test_sub, "original"), tolerance = tol)
   expect_equal(attr(test_full, "bootstraps"), attr(test_sub, "bootstraps"), tolerance = tol)
+
+  test_sub2 <- Wald_test_cwb(mod_sub,
+                            constraints = constrain_equal("IAT.Focus", reg_ex = TRUE),
+                            R = 3,
+                            auxiliary_dist = "Rademacher",
+                            adjust = "CR0",
+                            type = "CR0",
+                            test = "Naive-F",
+                            seed = 19)
+
+  expect_equal(attr(test_sub2, "original"), attr(test_sub, "original"), tolerance = tol)
+  expect_equal(attr(test_sub2, "bootstraps"), attr(test_sub, "bootstraps"), tolerance = tol)
+
+})
+
+test_that("Wald_test_cwb() works when rma.uni has missing observations.", {
+
+  set.seed(20230212)
+  oswald_missX <- oswald2013_full
+  oswald_missX$IAT.Focus[sample(1:nrow(oswald2013_full), size = 40)] <- NA
+  oswald_sub <- subset(oswald_missX, Crit.Cat == "Microbehavior")
+  oswald_complete <- subset(oswald_missX, Crit.Cat == "Microbehavior" & !is.na(IAT.Focus))
+
+  mod_complete <- rma.uni(yi = yi, vi = vi,
+                          mods = ~ 0 + IAT.Focus + Crit.Domain,
+                          data = oswald_complete)
+
+  expect_warning(
+    mod_sub <- rma.uni(yi = yi, vi = vi,
+                       mods = ~ 0 + IAT.Focus + Crit.Domain,
+                       data = oswald_sub)
+  )
+
+  expect_warning(
+    mod_missX <- rma.uni(yi = yi, vi = vi,
+                         mods = ~ 0 + IAT.Focus + Crit.Domain,
+                         data = oswald_missX,
+                         subset = Crit.Cat == "Microbehavior")
+  )
+
+  compare_mod_results(mod_complete, mod_sub)
+  compare_mod_results(mod_complete, mod_missX)
+
+  test_complete <- Wald_test_cwb(mod_sub,
+                                 constraints = constrain_equal("IAT.Focus", reg_ex = TRUE),
+                                 R = 5,
+                                 auxiliary_dist = "Rademacher",
+                                 adjust = "CR0",
+                                 type = "CR0",
+                                 test = "Naive-F",
+                                 seed = 19)
+
+  test_sub <- Wald_test_cwb(mod_sub,
+                            constraints = constrain_equal("IAT.Focus", reg_ex = TRUE),
+                            R = 5,
+                            auxiliary_dist = "Rademacher",
+                            adjust = "CR0",
+                            type = "CR0",
+                            test = "Naive-F",
+                            seed = 19)
+
+  expect_equal(attr(test_complete, "original"), attr(test_sub, "original"), tolerance = tol)
+  expect_equal(attr(test_complete, "bootstraps"), attr(test_sub, "bootstraps"), tolerance = tol)
+
+  test_missX <- Wald_test_cwb(mod_missX,
+                              constraints = constrain_equal("IAT.Focus", reg_ex = TRUE),
+                              R = 5,
+                              auxiliary_dist = "Rademacher",
+                              adjust = "CR0",
+                              type = "CR0",
+                              test = "Naive-F",
+                              seed = 19)
+
+  expect_equal(attr(test_complete, "original"), attr(test_missX, "original"), tolerance = tol)
+  expect_equal(attr(test_complete, "bootstraps"), attr(test_missX, "bootstraps"), tolerance = tol)
+
+  test_missX2 <- Wald_test_cwb(mod_missX,
+                               constraints = constrain_equal("IAT.Focus", reg_ex = TRUE),
+                               cluster = oswald_missX$esID,
+                               R = 5,
+                               auxiliary_dist = "Rademacher",
+                               adjust = "CR0",
+                               type = "CR0",
+                               test = "Naive-F",
+                               seed = 19)
+
+  expect_equal(attr(test_missX2, "original"), attr(test_missX, "original"), tolerance = tol)
+  expect_equal(attr(test_missX2, "bootstraps"), attr(test_missX, "bootstraps"), tolerance = tol)
+
+  test_sub2 <- Wald_test_cwb(mod_sub,
+                             constraints = constrain_equal("IAT.Focus", reg_ex = TRUE),
+                             cluster = oswald_sub$esID,
+                             R = 5,
+                             auxiliary_dist = "Rademacher",
+                             adjust = "CR0",
+                             type = "CR0",
+                             test = "Naive-F",
+                             seed = 19)
+
+  expect_equal(attr(test_sub2, "original"), attr(test_sub, "original"), tolerance = tol)
+  expect_equal(attr(test_sub2, "bootstraps"), attr(test_sub, "bootstraps"), tolerance = tol)
+
 
 })
 

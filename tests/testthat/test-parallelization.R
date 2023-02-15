@@ -203,6 +203,10 @@ test_that("Wald_test_cwb() returns the same results with plan(sequential) and pl
                            constraints = constrain_zero(2:3),
                            R = 19, seed = 99)
 
+  yi_seq <- Wald_test_cwb(rma_yi,
+                           constraints = constrain_zero(2:3),
+                           R = 18, seed = 101)
+
   rma_seq <- Wald_test_cwb(rma_mod,
                            constraints = constrain_zero(2:3),
                            R = 18, seed = 101)
@@ -234,6 +238,10 @@ test_that("Wald_test_cwb() returns the same results with plan(sequential) and pl
                              constraints = constrain_zero(2:3),
                              R = 19, seed = 99)
 
+  yi_multi <- Wald_test_cwb(rma_yi,
+                          constraints = constrain_zero(2:3),
+                          R = 18, seed = 101)
+
   rma_multi <- Wald_test_cwb(rma_mod,
                              constraints = constrain_zero(2:3),
                              R = 18, seed = 101)
@@ -248,11 +256,61 @@ test_that("Wald_test_cwb() returns the same results with plan(sequential) and pl
                                R = 18, seed = 101)
   )
 
+  expect_true(!is.na(robu_multi$p_val))
+  expect_true(!is.na(uni_multi$p_val))
+  expect_true(!is.na(yi_multi$p_val))
+  expect_true(!is.na(rma_multi$p_val))
+  expect_true(!is.na(sub_multi$p_val))
+  expect_true(!is.na(mis_multi$p_val))
+
   expect_equal(robu_seq, robu_multi)
   expect_equal(uni_seq, uni_multi)
+  expect_equal(yi_seq, yi_multi)
   expect_equal(rma_seq, rma_multi)
   expect_equal(sub_seq, sub_multi)
   expect_equal(mis_seq, mis_multi)
+
+})
+
+test_that("Wald_test_cwb() returns the same results with plan(sequential) and plan(multisession) for a rma.mv model.", {
+
+  skip_on_cran()
+
+  skip_if_not_installed("future")
+  skip_if_not_installed("parallelly")
+  skip_if_not_installed("future.apply")
+
+  library(future)
+
+  # load("tests/testthat/testdata/tsl_dat_20.RData")
+  load("testdata/tsl_dat_20.RData")
+
+  plan(sequential)
+
+  rma_mod <- rma.mv(yi = delta ~ 0 + dv + g2age,
+                    V = v,
+                    random = ~ 1 | study,
+                    data = tsl_dat)
+
+  rma_seq <- Wald_test_cwb(rma_mod,
+                           constraints = constrain_zero(1:6),
+                           R = 99, seed = 101)
+
+
+  expect_true(!is.na(rma_seq$p_val))
+
+  if (parallelly::supportsMulticore()) {
+    plan(multicore)
+  } else {
+    plan(multisession)
+  }
+
+
+  rma_multi <- Wald_test_cwb(rma_mod,
+                             constraints = constrain_zero(1:6),
+                             R = 99, seed = 101)
+
+  expect_equal(rma_seq, rma_multi)
 
 })
 

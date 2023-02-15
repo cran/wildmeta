@@ -71,28 +71,36 @@ Wald_test_cwb <- function(full_model,
   }
 
   # compute the null model
-  null_model <- estimate_null(full_model,
-                              C_mat = constraints)
+  suppressWarnings(
+    null_model <- estimate_null(full_model,
+                                C_mat = constraints)
+  )
+
+  # evaluate f on each bootstrap
+
+  future_f_args <- if (inherits(full_model,"rma")) {
+    list(
+      future.packages = c("clubSandwich","metafor")
+    )
+  } else {
+    NULL
+  }
+
+  get_boot_F <- get_boot_F_f(full_model = full_model, C_mat = constraints, type = type, test = test)
 
   # detect clusters if not specified
   if (is.null(cluster)) cluster <- get_cluster(null_model)
 
-  # evaluate f on each bootstrap
-  future_f_args <- if (inherits(full_model,"rma")) {
-    list(
-      future.packages = c("clubSandwich","metafor"),
-      future.envir = find_env(full_model)
-    )
-  } else {
-    NULL
+  # limit clustering variable to complete observations
+  obs_rows <- get_obs_rows(full_model)
+  if (length(cluster) > sum(obs_rows)) {
+    cluster <- cluster[obs_rows]
   }
 
   boots <- run_cwb(null_model,
                    cluster = cluster,
                    R = R,
                    f = get_boot_F,
-                   full_model = full_model,
-                   C_mat = constraints, type = type, test = test,
                    auxiliary_dist = auxiliary_dist,
                    adjust = adjust,
                    simplify = TRUE,
