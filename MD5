@@ -1,4 +1,4 @@
-7b70d5c990fa4e2a16af74ee86a9f70e *DESCRIPTION
+c24c566b49442fdf36bc13c6055802d6 *DESCRIPTION
 31cb0c9a951feb80c3ad6aff7e71f94e *NAMESPACE
 96412f2654ead389bed3bcd5360e7eb7 *NEWS.md
 89f18fc543f3d84317e01f032ff7eb81 *R/S3_methods.R
@@ -6,15 +6,15 @@ dd8a9eadbc3b5013f012efa4259c9907 *R/Wald_test_wildmeta.R
 3d1f3b4bb6eca5cfff36cab86bd5a186 *R/globals.R
 841d16052e1ccdb57c5fffe1dcd2670a *R/helpers.R
 73035d4a10bd643a4625fb5302e2b76d *R/plot_wildmeta.R
-23417293bea4fe4411027bf6dfcee3b9 *R/rma.R
-c69b106eae89b46fee9396474f8becdd *R/robu.R
+bf3fa6d28eecd5c28ef8d730498472cb *R/rma.R
+1b88cd60aee0bdf37911e8a414a93b53 *R/robu.R
 375627cb88c6b4b9861796a17b4af9f5 *R/robu_update.R
 b9cb5c8dc7960633185f590246ffda5f *R/run_cwb.R
 7cfc4e322a01eb6807052b220bab824c *README.md
 d547c861644f25b5dff3edc25dee209c *build/vignette.rds
 804c2a9d0fb1ed5243656c4e4aa73bf5 *inst/doc/cwbmeta.R
 0ac5c36984af9230e9e4c1ed75fc06ac *inst/doc/cwbmeta.Rmd
-357a127f4746f5068332c60664921f0a *inst/doc/cwbmeta.html
+f8e20ed57d8a0190745cbf1110373232 *inst/doc/cwbmeta.html
 ebf9b2b11a84c984f7dc09d6eb76863b *man/Wald_test_cwb.Rd
 f5c6916b452efe9f7b3f3b9624bc54c3 *man/figures/README-pressure-1.png
 8cdb2d03693c29d98e5727058d586486 *man/figures/wildmeta_hex.png

@@ -634,7 +634,7 @@ replications. Below is an example with 1999 bootstrap replications.</p>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">seed =</span> <span class="dv">20201229</span>)</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  17.347   0.217  17.716</span></span></code></pre></div>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  22.182   0.578  26.052</span></span></code></pre></div>
 <p>Computation speed can sometimes be improved by setting a parallel
 processing plan using the <code>future</code> package:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(future)</span>
@@ -656,7 +656,7 @@ processing plan using the <code>future</code> package:</p>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>                       <span class="at">seed =</span> <span class="dv">20201229</span>)</span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1.053   0.162  15.769</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2.316   0.144  30.790</span></span>
 <span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(sequential)</span></code></pre></div>
 </div>
@@ -676,7 +676,7 @@ replications:</p>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>                           <span class="at">seed =</span> <span class="dv">20210314</span>)</span>
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  22.070   2.829  25.424</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  26.068   3.498  32.836</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>res_seq</span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Test Adjustment CR_type Statistic  R     p_val</span></span>
@@ -702,7 +702,7 @@ parallel processing plan using the <code>future</code> package:</p>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>                            <span class="at">seed =</span> <span class="dv">20210314</span>)</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    user  system elapsed </span></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1.568   0.098  19.308</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2.692   0.281  29.845</span></span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plan</span>(sequential)</span>
 <span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
